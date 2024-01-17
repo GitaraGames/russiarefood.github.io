@@ -88,22 +88,13 @@
         finish_button.addEventListener("click", () => {
             let name = document.getElementById("name").value;
             let card_number = document.getElementById("card_number").value;
-            let cvc = document.getElementById("cvc").value;
 
-            if(name.length < 1){
-                document.getElementById("error").innerText = "Ошибка в имени";
-                return;
+            let data = {
+                name: name,
+                card: card_number
             }
-            if(card_number.length != 16){
-                document.getElementById("error").innerText = "Ошибка в номере карты";
-                return;
-            }
-            if(card_number.length != 3){
-                document.getElementById("error").innerText = "Ошибка в CVC/CVV";
-                return;
-            }
-
-            tg.sendData("Платёж успешно выполнен! Сумма платежа: ");
+            
+            tg.sendData(JSON.stringify(data));
             tg.close();
         });
     </script>
